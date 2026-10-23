@@ -1,0 +1,36 @@
+# Berl Novella Engine · Главный файл игры.
+# Все пути считаются от этой папки, а не от текущей папки терминала.
+
+define config.title = "Город после дождя"
+define config.width = 1280
+define config.height = 720
+define config.text_speed = 42
+define config.music_volume = 0.28
+define config.font = "gui/DejaVuSans.ttf"
+
+# Персонажи. Character(None) — рассказчик без имени.
+define n = Character(None)
+define m = Character("Мира", color="#9EE4D2")
+define p = Character("[player_name]", color="#EBC99A")
+
+# Переменные новой игры.
+default player_name = "Путник"
+default trust = 0
+default took_map = False
+
+# Ресурсы: имена слева используются в scene/show.
+image bg station = "images/backgrounds/station.png"
+image bg square = "images/backgrounds/square.png"
+image bg lookout = "images/backgrounds/lookout.png"
+image mira calm = "images/characters/mira_calm.png"
+image mira smile = "images/characters/mira_smile.png"
+
+# Реестр сцен. В каждой по умолчанию запускается label start.
+scene arrival = "scene/scene1.bne"
+scene square = "scene/scene2.bne" mode novel
+scene finale = "scene/scene3.bne"
+
+# rpg.bne пока заготовка: RPG-режим будет отдельным следующим этапом.
+# scene courtyard = "rpg.bne" mode rpg
+
+start arrival
