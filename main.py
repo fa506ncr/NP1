@@ -1,6 +1,6 @@
-"""Convenience launcher; the same CLI is available through python -m bne."""
+"""Double-click/source and PyInstaller launcher; resolves game/ next to this application."""
 
-from bne.__main__ import main
+from bne.launcher import main
 
 if __name__ == "__main__":
     raise SystemExit(main())

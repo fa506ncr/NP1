@@ -13,6 +13,7 @@ dependencies = ["pygame-ce>=2.5.2,<3"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+build = ["pyinstaller>=6.10,<7", "pygame-ce==2.5.8"]
 
 [project.scripts]
 bne = "bne.__main__:main"

@@ -7,3 +7,5 @@
 *.png binary
 *.wav binary
 *.ttf binary
+
+*.bat text eol=crlf

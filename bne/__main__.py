@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
 from bne import __version__
@@ -9,10 +10,18 @@ from bne.errors import BNEError
 from bne.project import load_project
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(
+    argv: list[str] | None = None,
+    *,
+    default_project: str | Path = "game",
+    error_handler: Callable[[str], None] | None = None,
+) -> int:
     parser = argparse.ArgumentParser(description="Berl Novella Engine — движок визуальных новелл.")
     parser.add_argument(
-        "project", nargs="?", default="game", help="папка игры или manager.bne (по умолчанию: game)"
+        "project",
+        nargs="?",
+        default=default_project,
+        help="папка игры или manager.bne (по умолчанию: game)",
     )
     parser.add_argument("--check", action="store_true", help="проверить игру без открытия окна")
     parser.add_argument("--mute", action="store_true", help="запустить без звука")
@@ -43,6 +52,8 @@ def main(argv: list[str] | None = None) -> int:
         ).run()
     except BNEError as error:
         print(f"BNE: {error}", file=sys.stderr)
+        if error_handler is not None and not args.check:
+            error_handler(str(error))
         return 1
     except KeyboardInterrupt:
         return 130
